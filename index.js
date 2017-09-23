@@ -1,7 +1,14 @@
 require('dotenv').config()
-let api = require('./intrepidapi.js')
 const express = require('express')
-const app = express()
+const bodyParser = require('body-parser')
+
+var app = express()
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false}))
+app.use(bodyParser.json())
+
+let api = require('./intrepidapi.js')
 
 let port = process.env.PORT
 let postTypes = ['Body.Door.FrontLeft', 'Body.Door.FrontRight', 'Body.Door.BackLeft', 'Body.Door.BackRight', 'Body.Window.FrontLeft', 'Body.Window.FrontRight', 'Body.Window.BackLeft', 'Body.Window.BackRight', 'Body.Liftgate', 'Body.FrontLiftgate', 'Body.Unlock', 'Body.Lock']
@@ -25,7 +32,7 @@ app.get('/alldata', function(req, res) {
 
 // requires a request object with body.postType equal to a value on https://mhacks.intrepidcs.com/docs, and a value associated with postType
 app.post('/postdata', function(req, res) { 
-  api.intrepid_api_post_call()
+  api.intrepid_api_post_call(req)
   .then (result => {
     res.json(result)
   })
