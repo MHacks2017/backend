@@ -26,16 +26,13 @@ module.exports.intrepid_api_get_call = function() {
 // TODO: input validation
 module.exports.intrepid_api_post_call = function(req) {
 
-  console.log(req)
-
   let key = req.body.key
   let value = req.body.value
-
   
+  let jsonToSendAPI = {key: "This is the key you sent me: " + key, value: "You sent me the following value: " + value} 
 
-  let jsonToSendAPI = {key: "This is the key you sent me: " + key, value: "You sent me the following value: " + value}
-  
-  return Promise.resolve(jsonToSendAPI)
+  if(key && value) return Promise.resolve(jsonToSendAPI)
+    else return Promise.reject("err")
 }
 
 /*
