@@ -6,7 +6,7 @@ let port = process.env.PORT
 
 
 app.get('/', function(req, res) {
-  res.send('Hello World!')
+  res.json({value: 'Hello World!'})
 })
 
 app.listen(port, function() {
