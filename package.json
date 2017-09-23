@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/MHacks2017/backend#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "dotenv": "^4.0.0",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "request": "^2.82.0",
+    "request-promise": "^4.2.2"
   }
 }

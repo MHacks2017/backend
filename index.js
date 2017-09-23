@@ -1,4 +1,5 @@
 require('dotenv').config()
+require('./intrepidapi.js')
 const express = require('express')
 const app = express()
 
