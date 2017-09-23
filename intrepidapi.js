@@ -1,5 +1,5 @@
 // THIS FILE MUST BE CALLED AFTER ENVIRONMENT VARIABLES ARE LOADED
-var rp = require('request-promise')
+var request = require('request-promise')
 const util = require('util') // so we can print [Object object]
 
 
@@ -11,26 +11,14 @@ var options = {
   json: true
 }
 
-rp(options)
+module.exports.intrepid_api_call = function() {
+  return request(options)
   .then( res => {
     console.log('received response with data: ' + util.inspect(res))
+    return Promise.resolve(res)
   })
   .catch( err => {
     console.log('api call failed')
+    return Promise.reject("err")
   })
-
-
-/*
-http.get(options, function(res) {
-
-  // do something with chunk
-  console.log('STATUS: ' + res.statusCode)
-  console.log('HEADERS: ' + JSON.stringify(res.headers))
-  res.setEncoding('utf8')  
-  res.on('data', function(chunk) {
-    console.log('BODY: ' + chunk)
-  })
-}).on('error', function(e) {
-  console.log('Got error: ' + e.message)
-})
-*/
+}
